@@ -1,0 +1,123 @@
+# Rafinaaaa-Birthday
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ucapan Ulang Tahun untuk Finaa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffcccb, #ffb6c1);
+            color: #4a2c56;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            padding: 30px 35px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #d5006d;
+            margin-bottom: 30px;
+        }
+        .message-box {
+            font-size: 1.2rem;
+            background: #ffb6c1;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0 30px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.5;
+            transition: opacity 0.4s ease;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            background: #d5006d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        button:disabled {
+            background: #e4a1b9;
+            cursor: not-allowed;
+        }
+        button:hover:not(:disabled) {
+            background: #c2185b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" role="main" aria-label="Ucapan ulang tahun interaktif untuk Finaa">
+        <h1>Selamat Ulang Tahun, Finaa!</h1>
+        <div id="messageBox" class="message-box" aria-live="polite" aria-atomic="true"></div>
+        <div class="controls">
+            <button id="prevBtn" aria-label="Pesan sebelumnya" disabled>Previous</button>
+            <button id="nextBtn" aria-label="Pesan berikutnya">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            "hiii…..finaa",
+            "I’m so sorry I missed your special day",
+            "I hope you don’t mind me bringing you a cake and celebrating your birthday a little late",
+            "By the way… say hi to your mom, dad, and your sibling for me",
+            `Happy birthday, my sweet girl. I don’t want to disturb you, but if you ever need someone to talk to, I’ll be right here — always waiting for you. No matter the time, no matter the reason, my heart will always have space for your story.<br><br>And just so you know… I’m always waiting for a notification from you — hoping it’s your name lighting up my screen.`
+        ];
+
+        const messageBox = document.getElementById('messageBox');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+
+        function renderMessage(index) {
+            messageBox.style.opacity = 0;
+            setTimeout(() => {
+                messageBox.innerHTML = messages[index];
+                messageBox.style.opacity = 1;
+            }, 300);
+
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === messages.length - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderMessage(currentIndex);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < messages.length - 1) {
+                currentIndex++;
+                renderMessage(currentIndex);
+            }
+        });
+
+        renderMessage(currentIndex);
+    </script>
+</body>
+</html>
